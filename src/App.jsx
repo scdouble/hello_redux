@@ -6,7 +6,7 @@ export default class App extends Component {
         return (
             <div>
                 {/* コンテナコンポーネントをレンダリング。ついでにreduxのstoreを送る */}
-                {/* <Count store={store} /> */} 
+                {/* <Count store={store} /> */}
                 <Count />
             </div>
         )

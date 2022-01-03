@@ -13,7 +13,7 @@ import {
 
 
 /*
-* mapStateToProps関数の返り値はObject。StateとしてUIコンポーネントに渡される
+* mapStateToProps関数の返り値はObject。StateをUIコンポーネントに渡す
 * 帰り値のObjectのkey項目はUIコンポーネントのpropsのkey, valueはUIコンポーネントのpropsの値になる
 * react-reduxがa関数を実行するときはすでにstateを引数にとして受けれる
 */
