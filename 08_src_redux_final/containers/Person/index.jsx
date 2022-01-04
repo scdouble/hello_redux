@@ -1,25 +1,25 @@
 import React, { Component } from "react";
-import { createAddPersonAction } from "../../redux/actions/person";
-import  {connect} from 'react-redux'
+import { addPerson } from "../../redux/actions/person";
+import { connect } from 'react-redux'
 import { nanoid } from "nanoid";
 
 class Person extends Component {
   addPerson = () => {
     const name = this.nameNode.value;
-    const age = this.ageNode.value;
+    const age = this.ageNode.value * 1;
 
     const personObj = { id: nanoid(), name, age }
     // console.log(personObj);
-    this.props.jiaYiRen(personObj)
+    this.props.addPerson(personObj)
 
-    this.nameNode.value =""
-    this.ageNode.value =""
+    this.nameNode.value = ""
+    this.ageNode.value = ""
 
   };
   render() {
     return (
       <div>
-        <h3>Person Component, Count Component has {this.props.he} count</h3>
+        <h3>Person Component, Count Component has {this.props.count} count</h3>
         <input
           ref={(c) => (this.nameNode = c)}
           type="text"
@@ -32,11 +32,11 @@ class Person extends Component {
         />
         <button onClick={this.addPerson}>Add Person</button>
         <ul>
-        {
-          this.props.yiduiren.map((ren)=>{
-            return <li key={ren.id}>{ren.name}----{ren.age}</li>
-          })
-        }
+          {
+            this.props.persons.map((person) => {
+              return <li key={person.id}>{person.name}----{person.age}</li>
+            })
+          }
         </ul>
 
       </div>
@@ -45,6 +45,9 @@ class Person extends Component {
 }
 
 export default connect(
-  state =>({yiduiren:state.rens, he:state.he}),
-  {jiaYiRen:createAddPersonAction}
+  state => ({
+    persons: state.persons,
+    count: state.count
+  }),
+  { addPerson }
 )(Person)

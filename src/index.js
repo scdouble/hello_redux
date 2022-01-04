@@ -5,11 +5,11 @@ import store from './redux/store'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-
-    </Provider>
-    , document.getElementById("root"))
+  // ここでProviderでAppコンポーネントを包む理由は、Appの子コンポーネント全体がStoreを利用できるため
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById("root"))
 
 // // redux中のstateの状態を監視、reduxのstateの状態の変化があったら、app全体を再度レンダリング
 // store.subscribe(() => {

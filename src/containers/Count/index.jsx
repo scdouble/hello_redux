@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-  createDecrementAction,
-  createIncrementAction,
-  createIncrementActionAsync,
+  increment, decrement, incrementAsync
 } from "../../redux/actions/count";
 
 
@@ -13,25 +11,25 @@ class Count extends Component {
 
   increment = () => {
     const { value } = this.selectNumber
-    this.props.jia(value * 1)
+    this.props.increment(value * 1)
 
   }
   decrement = () => {
     const { value } = this.selectNumber
-    this.props.jian(value * 1)
+    this.props.decrement(value * 1)
 
   }
   //現在の合計値が奇数時に足す
   incrementIfOdd = () => {
     const { value } = this.selectNumber
     if (this.props.count % 2 !== 0) {
-      this.props.jia(value * 1)
+      this.props.increment(value * 1)
     }
 
   }
   incrementAsync = () => {
     const { value } = this.selectNumber
-    this.props.jiaAsync(value * 1, 500)
+    this.props.incrementAsync(value * 1, 500)
 
   }
 
@@ -39,7 +37,7 @@ class Count extends Component {
     // console.log(this.props);
     return (
       <div>
-        <h3>Count Component, Person Component has {this.props.renshu} person</h3>
+        <h3>Count Component, Person Component has {this.props.personCount} person</h3>
         <h4>Current Sum Count: {this.props.count}</h4>
         <select ref={c => this.selectNumber = c} >
           <option value="1">1</option>
@@ -58,11 +56,14 @@ class Count extends Component {
 
 
 export default connect(
-  state => ({ count: state.he, renshu: state.rens.length }),
+  state => ({
+    count: state.count,
+    personCount: state.persons.length
+  }),
   //mapDispatchToPropsの簡潔な書き方
   {
-    jia: createIncrementAction,
-    jian: createDecrementAction,
-    jiaAsync: createIncrementActionAsync
+    increment,
+    decrement,
+    incrementAsync
   }
 )(Count)
