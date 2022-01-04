@@ -12,7 +12,7 @@
 // }
 
 // import store from "./store"
-import { INCREMENT, DECREMENT } from "./constant"
+import { INCREMENT, DECREMENT } from "../constant"
 // 簡潔に書く方法　、注意：右側のオブジェクトは()で括る必要がある。
 // export const createIncrementAction = data => { type: INCREMENT, data }　==> NG
 
