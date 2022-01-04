@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 class Person extends Component {
   addPerson = () => {
     const name = this.nameNode.value;
-    const age = this.ageNode.value * 1;
+    const age = this.ageNode.value;
 
     const personObj = { id: nanoid(), name, age }
     // console.log(personObj);
